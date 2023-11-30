@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using ShoppingItemStoreApi.Models;
 using System.Text.Json.Serialization;
 
 namespace BookStoreApi.Models;
@@ -15,5 +16,8 @@ public class ShoppingList
     public string ShoppingListName { get; set; } = null!;
 
     public decimal Budget { get; set; }
+    public bool Completed { get; set; }
+
+    public List<ShoppingItem> Items { get; set; } = null!;
 
 }

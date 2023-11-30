@@ -8,9 +8,9 @@ namespace BookStoreApi.Controllers;
 [Route("api/[controller]")]
 public class BooksController : ControllerBase
 {
-    private readonly BooksService _booksService;
+    private readonly BookService _booksService;
 
-    public BooksController(BooksService booksService) =>
+    public BooksController(BookService booksService) =>
         _booksService = booksService;
 
     [HttpGet]

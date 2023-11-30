@@ -2,6 +2,7 @@
 using BookStoreApi.Models;
 using BookStoreApi.Services;
 using Microsoft.Extensions.Options;
+using ShoppingListStoreApi.Services;
 
 namespace BookStoreApi
 {
@@ -15,6 +16,12 @@ namespace BookStoreApi
             builder.Services.Configure<BookStoreDatabaseSettings>(
                 builder.Configuration.GetSection("BookStoreDatabase"));
             
+
+            builder.Services.AddSingleton<BookService>();
+
+            builder.Services.Configure<ShoppingListDatabaseSettings>(
+                builder.Configuration.GetSection("ShoppingListDatabase"));
+
 
             builder.Services.AddSingleton<ShoppingListService>();
 

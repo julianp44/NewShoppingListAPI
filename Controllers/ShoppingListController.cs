@@ -1,56 +1,58 @@
 ﻿using BookStoreApi.Models;
 using BookStoreApi.Services;
 using Microsoft.AspNetCore.Mvc;
+using ShoppingListStoreApi.Services;
 
-namespace BookStoreApi.Controllers;
+namespace ShoppingListStoreApi.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
 public class ShoppingListController : ControllerBase
 {
-    private readonly ShoppingListService _booksService;
+    private readonly ShoppingListService _shoppingListService;
 
-    public ShoppingListController(ShoppingListService booksService) =>
-        _booksService = booksService;
+    public ShoppingListController(ShoppingListService shoppingListService) =>
+        _shoppingListService = shoppingListService;
 
     [HttpGet]
-    public async Task<List<Book>> Get() =>
-        await _booksService.GetAsync();
-
-    [HttpGet("{id:length(24)}")]
-    public async Task<ActionResult<Book>> Get(string id)
+    public async Task<List<ShoppingList>> Get()
     {
-        var book = await _booksService.GetAsync(id);
+      return  await _shoppingListService.GetAsync();
+    }
+    [HttpGet("{id:length(24)}")]
+    public async Task<ActionResult<ShoppingList>> Get(string id)
+    {
+        var shoppingList = await _shoppingListService.GetAsync(id);
 
-        if (book is null)
+        if (shoppingList is null)
         {
             return NotFound();
         }
 
-        return book;
+        return shoppingList;
     }
  
     [HttpPost]
-    public async Task<IActionResult> Post(Book newBook)
+    public async Task<IActionResult> Post(ShoppingList newShoppingList)
     {
-        await _booksService.CreateAsync(newBook);
+        await _shoppingListService.CreateAsync(newShoppingList);
 
-        return CreatedAtAction(nameof(Get), new { id = newBook.Id }, newBook);
+        return CreatedAtAction(nameof(Get), new { id = newShoppingList.Id }, newShoppingList);
     }
 
     [HttpPut("{id:length(24)}")]
-    public async Task<IActionResult> Update(string id, Book updatedBook)
+    public async Task<IActionResult> Update(string id, ShoppingList updatedShoppingList)
     {
-        var book = await _booksService.GetAsync(id);
+        var shoppingList = await _shoppingListService.GetAsync(id);
 
-        if (book is null)
+        if (shoppingList is null)
         {
             return NotFound();
         }
 
-        updatedBook.Id = book.Id;
+        updatedShoppingList.Id = shoppingList.Id;
 
-        await _booksService.UpdateAsync(id, updatedBook);
+        await _shoppingListService.UpdateAsync(id, updatedShoppingList);
 
         return NoContent();
     }
@@ -58,14 +60,14 @@ public class ShoppingListController : ControllerBase
     [HttpDelete("{id:length(24)}")]
     public async Task<IActionResult> Delete(string id)
     {
-        var book = await _booksService.GetAsync(id);
+        var shoppingList = await _shoppingListService.GetAsync(id);
 
-        if (book is null)
+        if (shoppingList is null)
         {
             return NotFound();
         }
 
-        await _booksService.RemoveAsync(id);
+        await _shoppingListService.RemoveAsync(id);
 
         return NoContent();
     }

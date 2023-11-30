@@ -1,4 +1,4 @@
-﻿using ShoppingListStoreApi.Models;
+﻿using BookStoreApi.Models;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 
