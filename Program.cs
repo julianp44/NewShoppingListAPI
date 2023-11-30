@@ -16,7 +16,7 @@ namespace BookStoreApi
                 builder.Configuration.GetSection("BookStoreDatabase"));
             
 
-            builder.Services.AddSingleton<BooksService>();
+            builder.Services.AddSingleton<ShoppingListService>();
 
             builder.Services.AddControllers()
                 .AddJsonOptions(

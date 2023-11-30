@@ -1,7 +1,19 @@
 {
-  "_id": 123,
   "name": "bob",
   "Budget": 29.99,
   "Completed": true,
-  "Items": []
+  "Items": [
+    {
+      "Name": "Apple",
+      "Price": 34.56,
+      "Selected": false,
+      "Description": "A delicious, healthy apple."
+    },
+    {
+      "Name": "Apple",
+      "Price": 34.56,
+      "Selected": false,
+      "Description": "A delicious, healthy apple."
+    }
+  ]
 }
