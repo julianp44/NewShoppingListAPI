@@ -1,4 +1,4 @@
-﻿#ShoppingListForm {
+﻿#AddItemForm {
     display: none;
     max-width: 275px;
     margin: 0 auto;
@@ -6,4 +6,3 @@
     border: 1px solid #ccc;
     background-color: lightyellow;
 }
-

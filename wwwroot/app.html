@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>Mamazon Books</title>
+    <title>Mamazon ShoppingLists</title>
+    <link href="css/AddItemForm.css" rel="stylesheet" />
     <link href="css/ShoppingListForm.css" rel="stylesheet" />
-    <style>
+    <style>/*insert new css above*/
         /* Global Font */
         body {
             font-family: Arial, sans-serif;
@@ -18,7 +19,7 @@
         }
 
         /* Form container */
-         #SearchForm {
+        #SearchForm {
             max-width: 275px;
             margin: 0 auto;
             padding: 10px;
@@ -57,7 +58,7 @@
             flex-wrap: wrap;
             justify-content: space-between;
             padding: 10px;
-            max-width:250px;
+            max-width: 250px;
         }
 
             /* Individual book item and search results */
@@ -84,31 +85,43 @@
         <h2>Create a New List</h2>
         <button id="show-form-btn">Create New Shopping List</button>
         <form id="ShoppingListForm">
+            <!--Broken Connection to DB? -->
+            <legend> New Shopping List</legend>
+            <br />
             <label for="NL_Name">Name:</label>
             <input type="text" id="NL_Name" name="Name" required />
 
             <label for="NL_Budget">Budget:</label>
-            <input type="text" id="NL_Budget" name="Price" required />
+            <input type="text" id="NL_Budget" name="Budget" required />
             <!--"Completed" checkbox not needed upon the creation of a new list but this code creates that field
 
-                    <label for="NL_Completed">Completed:</label>
-                    <input type="checkbox" id="NL_Completed" name="Completed" required />
-        -->
-            <!-- Not Needed For ShoppingListAPI
+                                    <label for="NL_Completed">Completed:</label>
+                                    <input type="checkbox" id="NL_Completed" name="Completed" required />
+    -->
+            <input type="submit" name="Create" value="Create">
+        </form>
+<!--No connection to DB yet-->
+        <form id="AddItemForm">
+            <legend> New Item</legend>
+            <br />
+            <label for="NI_Name">Name:</label>
+            <input type="text" id="NI_Name" name="Name" required />
 
-                        <label for="NB_Author">Author:</label>
-                        <input type="text" id="NB_Author" name="Author" required />
+            <label for="NI_Price">Price:</label>
+            <input type="text" id="NL_Price" name="Price" required />
 
-                        <label for="NB_JacketMaterial">Jacket Material:</label>
-                        <input type="text" id="NB_JacketMaterial" name="JacketMaterial" required />
-        -->
-            <input type="submit" value="Create">
+            <label for="NI_Description">Description:</label>
+            <input type="text" id="NI_Description" name="Description" required />
+
+            <input type="submit" name="AddItem" value="Add Item">
+
+            <input type="submit" name="CompleteList" value="Complete List">
         </form>
         <hr />
-        <h2>Available Books</h2>
+        <h2>ShoppingLists</h2>
         <ul id="Summary"></ul>
         <hr />
-        <h2>Search Book Properties By Id</h2>
+        <h2>Search Shopping Lists</h2>
         <form id="SearchForm">
             <label for="idInput">Book Id Number:</label>
             <input type="text" id="idInput" name="Id" required />
@@ -117,12 +130,13 @@
         <div id="searchedItem"></div>
     </main>
     <script src="js/Display_NL_FormToggle.js"></script>
-    <script>
-        
-        document.querySelector('#ShoppingListForm').addEventListener('submit', function (e) { //adds a new book using the form
+    <script src="js/Display_NI_Form.js"></script>
+    <script>//include new scripts in a new .js file above.
+
+        document.querySelector('#ShoppingListForm').addEventListener('submit', function (e) { //adds a new book using the form NOT Functional
             e.preventDefault();
             const formData = new FormData(this);
-            fetch('api/Books', {
+            fetch('api/ShoppingLists', {
                 method: 'POST',
                 body: JSON.stringify(Object.fromEntries(formData)),
                 headers: {
@@ -131,22 +145,22 @@
             })
             let bookList = document.getElementById('Summary');
             bookList.innerHTML = "";// clears 'Summary'
-            getBooks();
+            getShoppingLists();
         });
 
-        async function getBooks() {               //gets books from the database
-            let books = await fetch('api/Books');
+        async function getShoppingLists() {               //gets books from the database NOT Functional
+            let books = await fetch('api/ShoppingLists');
             books = await books.json();
 
             if (books.length > 0) {
-                renderBooks(books);
+                renderShoppingLists(books);
             } else {
                 console.log("No books found!");
             }
 
         }
 
-        function renderBooks(books) {    //Displays book names on html page under available books
+        function renderShoppingLists(books) {    //Displays book names on html page under available books NOT Functional
             let bookList = document.getElementById('Summary');
             bookList.innerHTML = "";// clears 'Summary'
 
@@ -154,47 +168,47 @@
 
             books.forEach((book) => {
                 let template = `
-                    <div class="book-details">
-                        <strong>Name:</strong> <em>${book.Name}</em>
-                    </div>
-                `;
+                        <div class="book-details">
+                            <strong>Name:</strong> <em>${book.Name}</em>
+                        </div>
+                    `;
                 bookList.insertAdjacentHTML("beforeend", template);
             });
         }
 
-        document.querySelector('#SearchForm').addEventListener('submit', function (e) { //display properties of a book by searching ID with a form
+        document.querySelector('#SearchForm').addEventListener('submit', function (e) { //display properties of a book by searching ID with a form NOT Functional
             e.preventDefault();
             const id = document.querySelector('#idInput').value;
-            fetch(`api/Books/${id}`, {            // Send a GET request
+            fetch(`api/ShoppingLists/${id}`, {            // Send a GET request NOT Functional
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
                 }
             })
                 .then(response => response.json())
-                .then(data => {                // Display the search results
+                .then(data => {                // Display the search results NOT Functional
 
                     const searchedItem = document.getElementById('searchedItem');
 
                     if (data) {
 
                         searchedItem.innerHTML = `
-                                <div class="book-details">
-                                    <strong>Name:</strong> <em>${data.Name}</em><br>
-                                    <strong>Price:</strong> <em>$${data.Price}</em><br>
-                                    <strong>Category:</strong> <em>${data.Category}</em><br>
-                                    <strong>Author:</strong> <em>${data.Author}</em><br>
-                                    <strong>Jacket Material:</strong> <em>${data.JacketMaterial}</em><br>
-                                    <button class="delete-button">Delete</button>
-                                </div>
-                            `;
+                                    <div class="book-details">
+                                        <strong>Name:</strong> <em>${data.Name}</em><br>
+                                        <strong>Price:</strong> <em>$${data.Price}</em><br>
+                                        <strong>Category:</strong> <em>${data.Category}</em><br>
+                                        <strong>Author:</strong> <em>${data.Author}</em><br>
+                                        <strong>Jacket Material:</strong> <em>${data.JacketMaterial}</em><br>
+                                        <button class="delete-button">Delete</button>
+                                    </div>
+                                `;
                     } else {
                         searchedItem.innerHTML = "Book not found.";
                     }
                 })
         });
 
-        getBooks();
+        getShoppingLists();
     </script>
 </body>
 </html>

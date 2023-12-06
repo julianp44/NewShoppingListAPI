@@ -7,4 +7,4 @@ showFormBtn.addEventListener('click', () => {
     } else {
         myForm.style.display = 'none';
     }
-});
+}); /*working code to show/hide New List Form*/
