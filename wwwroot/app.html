@@ -86,36 +86,40 @@
         <button id="show-form-btn">Create New Shopping List</button>
         <form id="ShoppingListForm">
             <!--Broken Connection to DB? -->
-            <legend> New Shopping List</legend>
-            <br />
-            <label for="NL_Name">Name:</label>
-            <input type="text" id="NL_Name" name="Name" required />
+            <fieldset>
+                <legend> New Shopping List</legend>
+                <br />
+                <label for="NL_Name">Name:</label>
+                <input type="text" id="NL_Name" name="Name" required />
 
-            <label for="NL_Budget">Budget:</label>
-            <input type="text" id="NL_Budget" name="Budget" required />
-            <!--"Completed" checkbox not needed upon the creation of a new list but this code creates that field
+                <label for="NL_Budget">Budget:</label>
+                <input type="text" id="NL_Budget" name="Budget" required />
+                <!--"Completed" checkbox not needed upon the creation of a new list but this code creates that field
 
                                     <label for="NL_Completed">Completed:</label>
                                     <input type="checkbox" id="NL_Completed" name="Completed" required />
     -->
-            <input type="submit" name="Create" value="Create">
-        </form>
+                <input type="submit" name="Create" value="Create">
+                </fieldset>
+</form>
 <!--No connection to DB yet-->
         <form id="AddItemForm">
-            <legend> New Item</legend>
-            <br />
-            <label for="NI_Name">Name:</label>
-            <input type="text" id="NI_Name" name="Name" required />
+            <fieldset>
+                <legend> New Item</legend>
+                <br />
+                <label for="NI_Name">Name:</label>
+                <input type="text" id="NI_Name" name="Name" required />
 
-            <label for="NI_Price">Price:</label>
-            <input type="text" id="NL_Price" name="Price" required />
+                <label for="NI_Price">Price:</label>
+                <input type="text" id="NL_Price" name="Price" required />
 
-            <label for="NI_Description">Description:</label>
-            <input type="text" id="NI_Description" name="Description" required />
+                <label for="NI_Description">Description:</label>
+                <input type="text" id="NI_Description" name="Description" required />
 
-            <input type="submit" name="AddItem" value="Add Item">
+                <input type="submit" name="AddItem" value="Add Item">
 
-            <input type="submit" name="CompleteList" value="Complete List">
+                <input type="submit" name="CompleteList" value="Complete List">
+            </fieldset>
         </form>
         <hr />
         <h2>ShoppingLists</h2>
@@ -123,10 +127,12 @@
         <hr />
         <h2>Search Shopping Lists</h2>
         <form id="SearchForm">
-            <label for="idInput">Book Id Number:</label>
-            <input type="text" id="idInput" name="Id" required />
-            <input type="submit" value="Search" />
-        </form>
+            <fieldset>
+                <label for="idInput">Book Id Number:</label>
+                <input type="text" id="idInput" name="Id" required />
+                <input type="submit" value="Search" />
+            </fieldset>
+</form>
         <div id="searchedItem"></div>
     </main>
     <script src="js/Display_NL_FormToggle.js"></script>
