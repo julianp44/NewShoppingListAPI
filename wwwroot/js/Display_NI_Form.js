@@ -17,6 +17,7 @@ addItemsForm.addEventListener('submit', (event) => {/* Not yet functional, both 
         addItemsForm.style.display = 'block';
     }
     else if (event.target.name === 'Add') {
+        debugger;
         addItemsForm.reset();
     }
 });

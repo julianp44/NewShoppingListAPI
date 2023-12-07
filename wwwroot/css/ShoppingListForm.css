@@ -3,7 +3,10 @@
     max-width: 275px;
     margin: 0 auto;
     padding: 10px;
-    border: 1px solid #ccc;
-    background-color: lightyellow;
+    /*border: 1px solid #ccc;*/
+    /*background-color: lightyellow;*/
 }
-
+    #ShoppingListForm label {
+        display: block;
+        margin-bottom: 5px;
+    }

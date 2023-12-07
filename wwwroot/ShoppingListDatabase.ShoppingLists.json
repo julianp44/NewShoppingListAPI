@@ -1,0 +1,56 @@
+[{
+  "_id": {
+    "$oid": "65683faa9db87fc6d8748e4d"
+  },
+  "Name": "bob",
+  "Budget": 29.99,
+  "Completed": true,
+  "Items": [
+    {
+      "Name": "Apple",
+      "Price": 34.56,
+      "Selected": false,
+      "Description": "A delicious, healthy apple."
+    },
+    {
+      "Name": "Apple",
+      "Price": 34.56,
+      "Selected": false,
+      "Description": "A delicious, healthy apple."
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "656842c21c0c57a80ddd4e1e"
+  },
+  "Name": "test",
+  "Budget": "1",
+  "Completed": true,
+  "Items": [
+    {
+      "_id": null,
+      "Name": "banana",
+      "Price": "21",
+      "Selected": true,
+      "Description": "string"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6570152aab3b0e63da5217e8"
+  },
+  "Name": "NewList",
+  "Budget": "0",
+  "Completed": true,
+  "Items": [
+    {
+      "_id": null,
+      "Name": "chips",
+      "Price": "0",
+      "Selected": true,
+      "Description": "sunchips"
+    }
+  ]
+}]
